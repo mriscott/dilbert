@@ -30,9 +30,9 @@ public class ShowComic {
     public ShowComic(String name) {
 	this.name=name;
 	if(name.equals(DILBERT)){
-	    origurl="http://www.dilbert.com";
+	    origurl="https://dilbert.com/";
 	    linematch="assets.amuniversal.com";
-	    searchkey1="src=";
+	    searchkey1="data-image=";
 	    searchkey2="\"";
 	    endkey="\"";
 	}
@@ -56,8 +56,12 @@ public class ShowComic {
     public void show() throws IOException {
 	String image=getImageUrl();
 	if(image!=null) {
+	    if(image.startsWith("//")) image="http:"+image;
+	    System.out.println("Image:"+image);
 	    ImView x = new ImView(image,name);
-       	}
+       	}else{
+	    System.out.println("No Image found");
+	}
     }
 
 
@@ -66,10 +70,13 @@ public class ShowComic {
 	URL url=new URL(origurl);
 	URLConnection conn=url.openConnection();
 	InputStream is=conn.getInputStream();
+	
+	System.out.println("Reading....");
 	LineNumberReader r=new LineNumberReader(new InputStreamReader(is));
 	while(true){
 	    String line=r.readLine();
 	    if(line==null) break;
+	    //System.out.println(line);
 	    String image = getImageFromLine(line);
 	    if(image!=null) return image;
 	}
