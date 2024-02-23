@@ -31,17 +31,17 @@ public class ShowComic {
 	this.name=name;
 	if(name.equals(DILBERT)){
 	    origurl="https://dilbert.com/";
-	    linematch="assets.amuniversal.com";
-	    searchkey1="data-image=";
+	    linematch="twitter:image";
+	    searchkey1="content=";
 	    searchkey2="\"";
 	    endkey="\"";
 	}
 	if(name.equals(XKCD)){
 	    origurl="https://xkcd.com";
 	    linematch="hotlinking/embedding";
-	    searchkey1=linematch;
-	    searchkey2=":";
-	    endkey="there is no end";
+	    searchkey1="a href= \"";
+	    searchkey2=">";
+	    endkey="</a>";
 	}
 	if(origurl==null){
 	    System.out.println("Comic "+name+" not supported");
