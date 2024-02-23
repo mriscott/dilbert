@@ -65,7 +65,7 @@ public class ImView extends Frame {
 		URL url=new URL(inurl);
 		URLConnection conn=url.openConnection();
 		InputStream is=conn.getInputStream();
-		String tempfile=TEMP_DIR+File.separator+"image.gif";
+		String tempfile=TEMP_DIR+File.separator+"image.png";
 		System.out.println("Downloading "+inurl+" to "+tempfile);
 		FileOutputStream fos=new FileOutputStream(tempfile);
 		byte [] buf=new byte[1000];
